@@ -1,2 +1,20 @@
-# PointerAnalysis
-Homework project for Software analysis
+# 程序分析大作业
+本项目实现了一个基于Soot的数据流分析的指针分析程序.
+
+## 小组成员
+李振营 201828013229070  
+韩柔刚 201828015059033  
+刘昱玮 201828015070006  
+
+## 代码结构
+`src/MyPointerAnalysis.java`为分析程序入口  
+`src/WholeProgramTransformer.java`为程序的soot转换部分  
+`src/AnswerPrinter.java`用于程序输出分析结果到文件  
+`src/ObjectInfo.java`定义用于保存变量的信息及一些操作方法的类  
+`src/PointToSet.java`定义数据流分析的元素及操作方法的类  
+`src/MyForwardFlow.java`具体实现的数据流分析算法  
+
+## 设计思想
+1. 流敏感分析: 针对普通赋值操作.  
+2. 域敏感分析: 针对域赋值和数组赋值等操作.   
+3. 过程间分析: 检测到函数调用时会对被调用函数再执行一次数据流分析, 并将分析结果放入当前整体分析结果中. 同时维护一个函数调用栈`callstack`, 分析被调用函数时将其入栈, 分析结束后出栈. 当发生递归调用时, 即`callstack`出现重复, 跳过对递归函数的分析.
